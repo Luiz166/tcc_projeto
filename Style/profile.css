@@ -68,5 +68,17 @@ text-align: center;
     background-color: #e3fdff;
     padding: 50px 30px;
     display: none;
+    z-index: 1000;
+    border-radius: 10px;
 }
 
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}

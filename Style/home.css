@@ -98,6 +98,7 @@ header span:last-child{
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    margin-top: 2rem;
 }
 
 .transactions-item{

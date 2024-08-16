@@ -1,0 +1,19 @@
+header{
+    position: static !important;
+    text-align: center;
+}
+
+.balance{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.balance span:first-child{
+    font-size: 1.2rem;
+}
+
+.balance span:last-child{
+    font-size: 1.5rem;
+    font-weight: 600;
+}

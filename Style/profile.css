@@ -1,4 +1,5 @@
 @import url(variables.css);
+@import url(form.css);
 
 header{
 position: static !important;
@@ -41,7 +42,7 @@ text-align: center;
     width: 100%;
 }
 
-.options a{
+.options button, .options a{
     text-decoration: none;
     color: white;
     background-color: var(--azul);
@@ -50,4 +51,22 @@ text-align: center;
     font-size: 1.2rem;
     width: 25%;
     text-align: center;
+    border: none;
+    cursor: pointer;
 }
+
+.change-name-container, .change-password-container{
+    max-width: 81.25rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: #e3fdff;
+    padding: 50px 30px;
+    display: none;
+}
+

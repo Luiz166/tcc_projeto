@@ -24,8 +24,8 @@
             </span>
         </div>
         <div class="options">
-            <a href="" class="change-name">Mudar nome</a>
-            <a href="" class="change-password">Mudar senha</a>
+            <button id="change-name-button" class="change-name">Mudar nome</button>
+            <button id="change-password-button" class="change-password">Mudar senha</button>
             <a href="" class="logout">Sair</a>
         </div>
         <footer class="navigation-bar">
@@ -46,5 +46,26 @@
             <a class="add-button" href="#">+</a>
         </footer>
     </div>
+    <section class="change-name-container">
+        <span>Mudar nome</span>
+        <form action="" class="registerForm">
+            <div class="floating-label-group">
+                <input class="floating-input" type="text" name="" id="" placeholder=" ">
+                <label class="floating-label">Novo nome</label>
+            </div>
+            <input class="registerBtn" type="submit" value="Mudar">
+        </form>
+    </section>
+    <section class="change-password-container">
+        <span>Mudar senha</span>
+        <form action="" class="registerForm">
+            <div class="floating-label-group">
+                <input class="floating-input" type="password" name="" id="" placeholder=" ">
+                <label class="floating-label">Nova senha</label>
+            </div>
+            <input class="registerBtn" type="submit" value="Mudar">
+        </form>
+    </section>
+    <script src="/Resources/profile.js"></script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|webp|svg|ico)$ [NC]
+
+    RewriteCond %{REQUEST_URI} !^/Img/ [NC]
+    RewriteCond %{REQUEST_URI} !^/Style/ [NC]
+
+    RewriteRule ^$ view/ [L]
+    RewriteRule (.*) view/$1 [L]
+</IfModule>

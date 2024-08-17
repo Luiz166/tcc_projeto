@@ -38,3 +38,8 @@
     height: auto;
 }
 
+.error-message{
+    background-color: rgba(255, 0, 0, 0.5) !important;
+    padding: 12px;
+}
+

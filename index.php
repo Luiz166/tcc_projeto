@@ -1,3 +1,7 @@
+<?php 
+ include 'resources/conn.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +21,7 @@
             </div>
             <div class="direitaBottom">
                 <span>Lorem ipsum dolor sit amet.</span>
-                <a href="/View/register.html">Começar</a>
+                <a href="/View/register.php">Começar</a>
                 <span>Já tem uma conta?
                     <a href="/View/login.html">Entrar</a>
                 </span>

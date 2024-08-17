@@ -56,8 +56,33 @@
                     <img src="/Resources/Icons/user-solid.svg" alt="">
                 </a>
             </div>
-            <a class="add-button" href="#">+</a>
+            <button class="add-button">+</button>
         </footer>
     </div>
+    <div class="overlay"></div>
+    <section class="add-transaction-container">
+        <form action="" class="registerForm">
+            <div class="switch-container">
+                <input type="radio" name="switch" id="income" value="Renda">
+                <label for="income">Renda</label>
+                <input type="radio" name="switch" id="expense" value="Despesa">
+                <label for="expense">Despesa</label>
+            </div>
+                <div class="floating-label-group">
+                    <input type="number" name="" id="" required class="floating-input" placeholder=" ">
+                    <label class="floating-label">Valor</label>
+                </div>
+                <div class="floating-label-group">
+                    <input type="text" name="" placeholder=" " required id="" class="floating-input">
+                    <label class="floating-label">Nome</label>
+                </div>
+                <div class="floating-label-group">
+                    <input type="date" name="" id="" placeholder=" " required class="floating-input">
+                    <label class="floating-label">Data</label>
+                </div>
+                <input type="button" value="Adicionar" class="registerBtn">
+        </form>
+    </section>
+    <script src="/Resources/home.js"></script>
 </body>
 </html>

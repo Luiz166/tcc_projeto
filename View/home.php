@@ -1,3 +1,28 @@
+<?php 
+session_start();
+$user_id = $_SESSION['user'];
+if(!isset($_SESSION["user"])){
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<?php
+    require_once "../resources/conn.php";
+    $sql = "SELECT nome FROM usuario WHERE usuario_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows > 0){
+        $row = $result->fetch_assoc();
+        $user_name = $row['nome'];
+    }else{
+        $user_name = "Convidado";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +35,7 @@
     <div class="container">
         <header>
             <span>Bom dia</span>
-            <span>Usuário</span>
+            <?php echo "<span>" . htmlspecialchars($user_name) . "</span>"; ?>
         </header>
         <div class="balance-card">
             <div class="total-balance">

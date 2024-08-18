@@ -14,6 +14,8 @@ require '../resources/helper.php';
     <title>Document</title>
 </head>
 <body>
+
+
     <div class="container">
 
         <section class="esquerdaImg">
@@ -33,6 +35,8 @@ require '../resources/helper.php';
                 $confirmPassword = $_POST["confirm-password"];
                 $error = array();
 
+                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
                 if(strlen($password)<8){
                     array_push($error, "Senha deve ter no mínimo 8 caracteres");
                 }
@@ -40,12 +44,30 @@ require '../resources/helper.php';
                 if($password !== $confirmPassword){
                     array_push($error, "A senha não corresponde.");
                 }
+
+                $sql = "SELECT * FROM usuario WHERE email = '$email'";
+                $result = mysqli_query($conn, $sql);
+                $rowCount = mysqli_num_rows($result);
+                if($rowCount>0){
+                    array_push($error, "Email já existe");
+                }
                 if(count($error) > 0){
                     foreach($error as $errors){
-                        echo "<div class='error-message'>$errors</div>";
+                        echo "<div class='error message'>$errors</div>";
                     }
                 }else{
-
+                    $sql = "INSERT INTO usuario (nome, email, senha) VALUES ( ?, ?, ? )";
+                    $stmt = mysqli_stmt_init($conn);
+                    $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
+                    if($prepareStmt){
+                        mysqli_stmt_bind_param($stmt, "sss", $fullName, $email, $passwordHash);
+                        mysqli_stmt_execute($stmt);
+                        echo "<div class='succesfull message'>Você foi registrado.</div>";
+                        echo '<meta http-equiv="refresh" content="1;url=login.php">';
+                        exit();
+                    }else{
+                        die("Ocorreu um erro.");
+                    }
                 }
             }
             ?>
@@ -70,5 +92,6 @@ require '../resources/helper.php';
             </form>
         </section>
     </div>
+
 </body>
 </html>

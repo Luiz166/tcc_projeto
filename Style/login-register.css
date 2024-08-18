@@ -38,8 +38,18 @@
     height: auto;
 }
 
-.error-message{
-    background-color: rgba(255, 0, 0, 0.5) !important;
+.message{
     padding: 12px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.succesfull{
+    background-color: rgba(0, 255, 0, .5) !important;
+}
+
+.error{
+    background-color: rgba(255, 0, 0, 0.5) !important;
+
 }
 

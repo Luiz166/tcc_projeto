@@ -23,6 +23,11 @@ if(!isset($_SESSION["user"])){
     }
 ?>
 
+<?php 
+    $sql = "SELECT nome_transacao, valor, data, tipo_transacao FROM transacoes ORDER BY data DESC";
+    $result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,16 +60,34 @@ if(!isset($_SESSION["user"])){
         </div>
         <div class="transactions">
             <span>Histórico de Transações</span>
-            <div class="transactions-item">
-                <div>
-                    <span>upwork</span>
-                    <span>hoje</span>
-                </div>
-                <div>
-                    <span>R$0</span>
-                    <span>concluído</span>
-                </div>
-            </div>
+            <?php
+                if($result->num_rows > 0){
+                    while($row = $result->Fetch_assoc()){
+                        ?>
+                        <div class="transactions-item">
+                            <div>
+                                <span><?php echo htmlspecialchars($row['nome_transacao']); ?></span>
+                                <span><?php echo htmlspecialchars(date("F j, Y", strtotime($row['data']))); ?></span>
+                            </div>
+                            <div>
+                                <span><?php echo number_format($row['valor'], 2); ?></span>
+                                <span>
+                                    <?php 
+                                        if($row['tipo_transacao'] === 1){
+                                            echo htmlspecialchars("Renda");
+                                        }else{
+                                            echo htmlspecialchars("Despesa");
+                                        }
+                                    ?>
+                                </span>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }else{
+                    echo ("<span>Você não tem transações, adicione!</span>");
+                }
+            ?>
         </div>
         <footer class="navigation-bar">
             <div class="navigation-bar-items">
@@ -86,26 +109,46 @@ if(!isset($_SESSION["user"])){
     </div>
     <div class="overlay"></div>
     <section class="add-transaction-container">
-        <form action="" class="registerForm">
+        <?php 
+        if(isset($_POST["add-button"])){
+
+            $transactionType = $_POST["transaction-type"];
+            //converting
+            $transactionType = ($transactionType === 'Renda') ? 1 : 0;
+            $value = $_POST["value"];
+            $name = $_POST["name"];
+            $date = $_POST["date"];
+
+            $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao) VALUES ( ?, ?, ?, ? )";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("dssi", $value, $name, $date, $transactionType);
+            $stmt->execute();
+
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
+        }
+        ?>
+        <form action="" class="registerForm" method="post">
             <div class="switch-container">
-                <input type="radio" name="switch" id="income" value="Renda">
+                <input type="radio" name="transaction-type" id="income" value="Renda">
                 <label for="income">Renda</label>
-                <input type="radio" name="switch" id="expense" value="Despesa">
+                <input type="radio" name="transaction-type" id="expense" value="Despesa">
                 <label for="expense">Despesa</label>
             </div>
                 <div class="floating-label-group">
-                    <input type="number" name="" id="" required class="floating-input" placeholder=" ">
+                    <input type="number" name="value" id="valueInput" required class="floating-input" placeholder=" ">
                     <label class="floating-label">Valor</label>
                 </div>
                 <div class="floating-label-group">
-                    <input type="text" name="" placeholder=" " required id="" class="floating-input">
+                    <input type="text" name="name" placeholder=" " maxlength="30" required id="" class="floating-input">
                     <label class="floating-label">Nome</label>
                 </div>
                 <div class="floating-label-group">
-                    <input type="date" name="" id="" placeholder=" " required class="floating-input">
+                    <input type="date" name="date" id="" placeholder=" " required class="floating-input">
                     <label class="floating-label">Data</label>
                 </div>
-                <input type="button" value="Adicionar" class="registerBtn">
+                <input type="submit" value="Adicionar" name="add-button" class="registerBtn">
         </form>
     </section>
     <script src="/Resources/home.js"></script>

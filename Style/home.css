@@ -227,3 +227,8 @@ header span:last-child{
 .switch-container label:hover{
     cursor: pointer;
 }
+
+#valueInput::-webkit-outer-spin-button, #valueInput::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}

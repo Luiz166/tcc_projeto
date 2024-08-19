@@ -66,13 +66,13 @@ if(!isset($_SESSION["user"])){
                 <a href="#">
                     <img src="/Resources/Icons/house-solid.svg" alt="">
                 </a>
-                <a href="/View/statistics.html">
+                <a href="/View/statistics.php">
                     <img src="/Resources/Icons/chart-simple-solid.svg" alt="">
                 </a>
-                <a href="/View/wallet.html">
+                <a href="/View/wallet.php">
                     <img src="/Resources/Icons/wallet-solid.svg" alt="">
                 </a>
-                <a href="/View/profile.html">
+                <a href="/View/profile.php">
                     <img src="/Resources/Icons/user-solid.svg" alt="">
                 </a>
             </div>

@@ -30,13 +30,13 @@
         </div>
         <footer class="navigation-bar">
             <div class="navigation-bar-items">
-                <a href="/View/home.html">
+                <a href="/View/home.php">
                     <img src="/Resources/Icons/house-solid.svg" alt="">
                 </a>
-                <a href="/View/statistics.html">
+                <a href="/View/statistics.php">
                     <img src="/Resources/Icons/chart-simple-solid.svg" alt="">
                 </a>
-                <a href="/View/wallet.html">
+                <a href="/View/wallet.php">
                     <img src="/Resources/Icons/wallet-solid.svg" alt="">
                 </a>
                 <a href="#">

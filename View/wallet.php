@@ -3,6 +3,10 @@ session_start();
 require_once "../resources/conn.php";
 ?>
 
+<?php 
+include "../resources/balanceRendaDespesa.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +23,7 @@ require_once "../resources/conn.php";
         </header>
         <section class="balance">
             <span>Saldo Total</span>
-            <span>R$0</span>
+            <span>R$<?php echo number_format($saldo_total, 2, ',', '.'); ?></span>
         </section>
         <div class="transactions">
             <span>Transações</span>

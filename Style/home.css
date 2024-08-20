@@ -156,6 +156,18 @@ header span:last-child{
 
 .navigation-bar-items a img{
     width: 25px;
+    object-position: center;
+}
+
+.navigation-bar-items a{
+    padding: 0 12px;
+    padding-top: 4px;
+    border-radius: 12px;
+    transition: all .2s ease-in-out;
+}
+
+.navigation-bar-items a:hover{
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .add-transaction-container{
@@ -238,4 +250,10 @@ header span:last-child{
     width: 40px;
     height: 40px;
     cursor: pointer;
+    transition: all .2s ease-in-out;
+    border-radius: 12px;
+}
+
+.delete-transaction-container button:hover{
+    background-color: rgba(255, 0, 0, 0.4);
 }

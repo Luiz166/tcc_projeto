@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
                 <span><?php echo number_format($row['valor'], 2); ?></span>
                 <span>
                     <?php
-                    if ($row['tipo_transacao'] === 1) {
+                    if ($row['tipo_transacao'] == 1) {
                         echo htmlspecialchars("Renda");
                     } else {
                         echo htmlspecialchars("Despesa");

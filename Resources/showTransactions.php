@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT nome_transacao, valor, data, tipo_transacao FROM transacoes ORDER BY data DESC";
+$sql = "SELECT * FROM transacoes ORDER BY data DESC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->Fetch_assoc()) {
@@ -21,6 +21,13 @@ if ($result->num_rows > 0) {
                     ?>
                 </span>
             </div>
+            <form method="POST" action="../Resources/deleteTransaction.php" class="delete-transaction-container">
+                <input type="hidden" name="transaction_id" value="<?php echo $row['transacao_id'] ?>">
+                <input type="hidden" name="transaction_page_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                <button type="submit">
+                    <img src="../Resources/icons/delete-left-solid.svg" alt="delete">
+                </button>
+            </form>
         </div>
 <?php
     }

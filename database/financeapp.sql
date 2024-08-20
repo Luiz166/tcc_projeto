@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 19/08/2024 às 15:41
+-- Tempo de geração: 20/08/2024 às 14:20
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.2.18
 
@@ -35,14 +35,16 @@ CREATE TABLE IF NOT EXISTS `transacoes` (
   `data` date NOT NULL,
   `tipo_transacao` tinyint(1) NOT NULL,
   PRIMARY KEY (`transacao_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `transacoes`
 --
 
 INSERT INTO `transacoes` (`transacao_id`, `valor`, `nome_transacao`, `data`, `tipo_transacao`) VALUES
-(8, 100, 'celular', '2024-08-18', 0);
+(13, 1000, 'salario', '2024-08-20', 1),
+(8, 100, 'celular', '2024-08-18', 0),
+(14, 200, 'teste', '2024-08-19', 0);
 
 -- --------------------------------------------------------
 

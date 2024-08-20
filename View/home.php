@@ -44,16 +44,16 @@ if(!isset($_SESSION["user"])){
         <div class="balance-card">
             <div class="total-balance">
                 <span>Saldo total</span>
-                <span> <?php echo number_format($saldo_total, 2, ',', '.'); ?></span>
+                <span>R$ <?php echo number_format($saldo_total, 2, ',', '.'); ?></span>
             </div>
             <div class="income-expanses">
                 <div>
                     <span>Ganhos</span>
-                    <span><?php echo number_format($total_renda, 2, ',', '.'); ?></span>
+                    <span>R$<?php echo number_format($total_renda, 2, ',', '.'); ?></span>
                 </div>
                 <div>
                     <span>Despesas</span>
-                    <span><?php echo number_format($total_despesa, 2, ',', '.'); ?></span>
+                    <span>R$<?php echo number_format($total_despesa, 2, ',', '.'); ?></span>
                 </div>
             </div>
         </div>

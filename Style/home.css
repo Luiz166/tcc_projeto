@@ -232,3 +232,10 @@ header span:last-child{
     -webkit-appearance: none;
     margin: 0;
 }
+
+.delete-transaction-container button{
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}

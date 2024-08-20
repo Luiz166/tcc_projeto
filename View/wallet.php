@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once "../resources/conn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +23,7 @@
         </section>
         <div class="transactions">
             <span>Transações</span>
-            <div class="transactions-item">
-                <div>
-                    <span>upwork</span>
-                    <span>hoje</span>
-                </div>
-                <div>
-                    <span>R$0</span>
-                    <span>concluído</span>
-                </div>
-            </div>
+            <?php include '../resources/showTransactions.php'; ?>
         </div>
         <footer class="navigation-bar">
             <div class="navigation-bar-items">

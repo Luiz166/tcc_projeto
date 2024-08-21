@@ -17,10 +17,9 @@ require_once "../resources/conn.php";
         <div class="header">
             <span>Estatísticas</span>
             <div class="time-frame">
-                <button class="time-btn">Dia</button>
-                <button class="time-btn">Semana</button>
-                <button class="time-btn">Mês</button>
-                <button class="time-btn selected">Ano</button>
+                <button class="time-btn" id="btn-semana">Semana</button>
+                <button class="time-btn" id="btn-mes">Mês</button>
+                <button class="time-btn" id="btn-ano">Ano</button>
             </div>
         </div>
 

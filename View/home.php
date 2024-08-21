@@ -1,30 +1,30 @@
-<?php 
+<?php
 session_start();
 $user_id = $_SESSION['user'];
-if(!isset($_SESSION["user"])){
+if (!isset($_SESSION["user"])) {
     header("Location: login.php");
     exit();
 }
 ?>
 
 <?php
-    require_once "../resources/conn.php";
-    $sql = "SELECT nome FROM usuario WHERE usuario_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+require_once "../resources/conn.php";
+$sql = "SELECT nome FROM usuario WHERE usuario_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    if($result->num_rows > 0){
-        $row = $result->fetch_assoc();
-        $user_name = $row['nome'];
-    }else{
-        $user_name = "Convidado";
-    }
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $user_name = $row['nome'];
+} else {
+    $user_name = "Convidado";
+}
 ?>
 
 <?php
-    include "../resources/balanceRendaDespesa.php";
+include "../resources/balanceRendaDespesa.php";
 ?>
 
 <!DOCTYPE html>
@@ -81,8 +81,8 @@ if(!isset($_SESSION["user"])){
     </div>
     <div class="overlay"></div>
     <section class="add-transaction-container">
-        <?php 
-        if(isset($_POST["add-button"])){
+        <?php
+        if (isset($_POST["add-button"])) {
 
             $transactionType = $_POST["transaction-type"];
             //converting
@@ -108,19 +108,19 @@ if(!isset($_SESSION["user"])){
                 <input type="radio" name="transaction-type" id="expense" value="Despesa">
                 <label for="expense">Despesa</label>
             </div>
-                <div class="floating-label-group">
-                    <input type="number" name="value" id="valueInput" required class="floating-input" placeholder=" ">
-                    <label class="floating-label">Valor</label>
-                </div>
-                <div class="floating-label-group">
-                    <input type="text" name="name" placeholder=" " maxlength="30" required id="" class="floating-input">
-                    <label class="floating-label">Nome</label>
-                </div>
-                <div class="floating-label-group">
-                    <input type="date" name="date" id="" placeholder=" " required class="floating-input">
-                    <label class="floating-label">Data</label>
-                </div>
-                <input type="submit" value="Adicionar" name="add-button" class="registerBtn">
+            <div class="floating-label-group">
+                <input type="number" name="value" id="valueInput" required class="floating-input" placeholder=" ">
+                <label class="floating-label">Valor</label>
+            </div>
+            <div class="floating-label-group">
+                <input type="text" name="name" placeholder=" " maxlength="30" required id="" class="floating-input">
+                <label class="floating-label">Nome</label>
+            </div>
+            <div class="floating-label-group">
+                <input type="date" name="date" id="" placeholder=" " required class="floating-input">
+                <label class="floating-label">Data</label>
+            </div>
+            <input type="submit" value="Adicionar" name="add-button" class="registerBtn">
         </form>
     </section>
     <script src="/Resources/home.js"></script>

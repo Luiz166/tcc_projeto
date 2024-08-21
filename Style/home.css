@@ -254,6 +254,10 @@ header span:last-child{
     border-radius: 12px;
 }
 
-.delete-transaction-container button:hover{
+#delete-transaction-btn:hover{
     background-color: rgba(255, 0, 0, 0.4);
+}
+
+#edit-transaction-btn:hover{
+    background-color: rgba(0, 0, 0, .3);
 }

@@ -7,7 +7,7 @@ if ($result->num_rows > 0) {
         <div class="transactions-item">
             <div>
                 <span><?php echo htmlspecialchars($row['nome_transacao']); ?></span>
-                <span><?php echo htmlspecialchars(date("F j, Y", strtotime($row['data']))); ?></span>
+                <span><?php echo htmlspecialchars(date("d/m/Y", strtotime($row['data']))); ?></span>
             </div>
             <div>
                 <span><?php echo number_format($row['valor'], 2); ?></span>
@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
             <form method="POST" action="../Resources/deleteTransaction.php" class="delete-transaction-container">
                 <input type="hidden" name="transaction_id" value="<?php echo $row['transacao_id'] ?>">
                 <input type="hidden" name="transaction_page_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
-                <button type="submit">
+                <button type="submit" id="delete-transaction-btn">
                     <img src="../Resources/icons/delete-left-solid.svg" alt="delete">
                 </button>
             </form>

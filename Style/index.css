@@ -98,3 +98,26 @@ html, body{
     text-decoration: none;
     color: var(--azul);
 }
+
+@media (max-width: 1200px){
+    .esquerdaLogo{
+        display: none;
+    }
+}
+
+@media (max-width: 768px){
+    html{
+        font-size: 11px;
+    }
+    .container{
+        width: 100vw;
+        height: 100vh;
+    }
+    .esquerdaLogo{
+        display: none;
+    }
+
+    .direitaBottom span{
+        text-align: center;
+    }
+}

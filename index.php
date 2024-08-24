@@ -23,7 +23,7 @@
                 <span>Lorem ipsum dolor sit amet.</span>
                 <a href="/View/register.php">Começar</a>
                 <span>Já tem uma conta?
-                    <a href="/View/login.html">Entrar</a>
+                    <a href="/View/login.php">Entrar</a>
                 </span>
             </div>
         </section>

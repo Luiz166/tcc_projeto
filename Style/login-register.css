@@ -4,10 +4,6 @@
     .esquerdaImg{
         display: none;
     }
-    
-    body{
-        font-size: 12px;
-    }
     .container{
         text-wrap: wrap;
     }

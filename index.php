@@ -1,15 +1,20 @@
-<?php 
- include 'resources/conn.php';
+<?php
+include 'resources/conn.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="/Style/index.css">
+    <meta name="theme-color" content="#3f51b5">
+    <link rel="stylesheet" href="/Style/index.css">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="./templateIcon.png">
     <title>Document</title>
 </head>
+
 <body>
     <div class="container">
         <section class="esquerdaLogo">
@@ -28,5 +33,7 @@
             </div>
         </section>
     </div>
+    <script src="index.js"></script>
 </body>
+
 </html>

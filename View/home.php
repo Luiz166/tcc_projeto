@@ -90,11 +90,12 @@ include "../resources/balanceRendaDespesa.php";
             $value = $_POST["value"];
             $name = $_POST["name"];
             $date = $_POST["date"];
+            $categoria = $_POST["categoria"];
 
-            $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao) VALUES ( ?, ?, ?, ? )";
+            $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id) VALUES ( ?, ?, ?, ?, ?, ? )";
 
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("dssi", $value, $name, $date, $transactionType);
+            $stmt->bind_param("dssisi", $value, $name, $date, $transactionType, $categoria, $user_id);
             $stmt->execute();
 
             header("Location: " . $_SERVER['PHP_SELF']);
@@ -115,6 +116,10 @@ include "../resources/balanceRendaDespesa.php";
             <div class="floating-label-group">
                 <input type="text" name="name" placeholder=" " maxlength="30" required id="" class="floating-input">
                 <label class="floating-label">Nome</label>
+            </div>
+            <div class="floating-label-group">
+                <input type="text" name="categoria" id="" maxlength="20" class="floating-input" placeholder=" ">
+                <label class="floating-label">Categoria</label>
             </div>
             <div class="floating-label-group">
                 <input type="date" name="date" id="" placeholder=" " required class="floating-input">

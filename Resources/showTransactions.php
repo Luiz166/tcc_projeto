@@ -21,6 +21,10 @@ if ($result->num_rows > 0) {
                     ?>
                 </span>
             </div>
+            <div>
+                <span>categoria</span>
+                <span>mercado</span>
+            </div>
             <form method="POST" action="../Resources/deleteTransaction.php" class="delete-transaction-container">
                 <input type="hidden" name="transaction_id" value="<?php echo $row['transacao_id'] ?>">
                 <input type="hidden" name="transaction_page_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">

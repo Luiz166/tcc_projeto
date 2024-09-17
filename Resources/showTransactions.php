@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT * FROM transacoes ORDER BY data DESC";
+$sql = "SELECT * FROM transacoes WHERE usuario_id = $user_id ORDER BY data DESC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->Fetch_assoc()) {

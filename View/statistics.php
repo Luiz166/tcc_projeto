@@ -1,5 +1,10 @@
 <?php
 session_start();
+$user_id = $_SESSION['user'];
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+    exit();
+}
 require_once "../resources/conn.php";
 ?>
 

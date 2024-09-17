@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
             </div>
             <div>
                 <span>categoria</span>
-                <span>mercado</span>
+                <span><?php echo htmlspecialchars($row['categoria']); ?></span>
             </div>
             <form method="POST" action="../Resources/deleteTransaction.php" class="delete-transaction-container">
                 <input type="hidden" name="transaction_id" value="<?php echo $row['transacao_id'] ?>">

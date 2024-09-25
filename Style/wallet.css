@@ -1,9 +1,14 @@
 header{
-    position: static !important;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header span{
+    font-size: 2.5rem !important;
 }
 
 .balance{
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,6 +19,22 @@ header{
 }
 
 .balance span:last-child{
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
+}
+
+.floating-label-group{
+    width: 70%;
+}
+
+.floating-label-group label{
+    background-color: #f3f3f3;
+}
+
+.transactionsHistory{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
 }

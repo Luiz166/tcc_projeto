@@ -32,7 +32,13 @@ include "../resources/balanceRendaDespesa.php";
         </section>
         <div class="transactions">
             <span>Transações</span>
-            <?php include '../resources/showTransactions.php'; ?>
+            <div class="floating-label-group">
+                <input type="text" id="search" placeholder=" " class="floating-input">
+                <label for="search" class="floating-label">Pesquisar transações</label>
+            </div>
+            <div id="history" class="transactionsHistory">
+                <?php include '../resources/showTransactions.php'; ?>
+            </div>
         </div>
         <footer class="navigation-bar">
             <div class="navigation-bar-items">
@@ -52,4 +58,6 @@ include "../resources/balanceRendaDespesa.php";
         </footer>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/Resources/SearchBar.js"></script>
 </html>

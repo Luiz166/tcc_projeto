@@ -25,7 +25,7 @@ include 'resources/conn.php';
                 <img src="/Resources/Img/indexImg.png" alt="loginImg">
             </div>
             <div class="direitaBottom">
-                <span>Lorem ipsum dolor sit amet.</span>
+                <span>Controle suas finanças, realize seus sonhos!</span>
                 <a href="/View/register.php">Começar</a>
                 <span>Já tem uma conta?
                     <a href="/View/login.php">Entrar</a>

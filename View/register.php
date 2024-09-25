@@ -30,7 +30,7 @@ if(isset($_SESSION["user"])){
             <img src="/Resources/Img/woman-lookingphone.jpg" alt="woman-lookingphone">
         </section>
         <section class="direitaForm">
-            <span>Começa a salvar seu dinheiro!</span>
+            <span id="direitaFormTitle">Começa a salvar seu dinheiro!</span>
             <div class="formImg">
                 <img src="/Resources/Img/registerImg.png">
             </div>

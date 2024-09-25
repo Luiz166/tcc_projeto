@@ -35,22 +35,24 @@ require_once "../resources/conn.php";
         <header>
             <span>Perfil</span>
         </header>
-        <div class="profile-info">
-            <div class="profile-image">
-                <img src="/Resources/Icons/user-solid.svg" alt="user">
+        <section class="profile-section">  
+            <div class="profile-info">
+                <div class="profile-image">
+                    <img src="/Resources/Icons/user-solid.svg" alt="user">
+                </div>
+                <span id="name">
+                    <?php echo htmlspecialchars($user_name); ?>
+                </span>
+                <span id="email">
+                    <?php echo htmlspecialchars($user_email); ?>
+                </span>
             </div>
-            <span id="name">
-                <?php echo htmlspecialchars($user_name); ?>
-            </span>
-            <span id="email">
-                <?php echo htmlspecialchars($user_email); ?>
-            </span>
-        </div>
-        <div class="options">
-            <button id="change-name-button" class="change-name">Mudar nome</button>
-            <button id="change-password-button" class="change-password">Mudar senha</button>
-            <a href="/Resources/logout.php" class="logout">Sair</a>
-        </div>
+            <div class="options">
+                <button id="change-name-button" class="change-name hover-darker">Mudar nome</button>
+                <button id="change-password-button" class="change-password hover-darker">Mudar senha</button>
+                <a href="/Resources/logout.php" class="logout hover-darker">Sair</a>
+            </div>
+        </section>
         <footer class="navigation-bar">
             <div class="navigation-bar-items">
                 <a href="/View/home.php">

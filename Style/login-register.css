@@ -49,3 +49,10 @@
 
 }
 
+.registerForm span:last-child{
+    color: white;
+}
+
+.registerForm span:last-child a{
+    color: var(--azul);
+}

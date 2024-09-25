@@ -8,12 +8,13 @@
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
+    color: white;
 }
 
 .time-frame{
     display: flex;
     margin-top: 2rem;
-    background-color: #cacaca;
+    background-color: var(--roxo-claro);
     border-radius: 40px;
 }
 .time-frame button{
@@ -21,14 +22,14 @@
     font-size: 1.2rem;
     padding: 5px 12px;
     cursor: pointer;
-    background-color: #cacaca;
+    background-color: var(--roxo-claro);
     margin-right: 24px;
     transition: filter .3s ease;
     border-radius: 24px;
 }
 
 .time-frame button:hover{
-    filter: brightness(.9);
+    filter: brightness(.7);
 }
 
 .selected{

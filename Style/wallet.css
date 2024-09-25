@@ -12,6 +12,7 @@ header span{
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
 }
 
 .balance span:first-child{
@@ -25,10 +26,6 @@ header span{
 
 .floating-label-group{
     width: 70%;
-}
-
-.floating-label-group label{
-    background-color: #f3f3f3;
 }
 
 .transactionsHistory{

@@ -11,8 +11,8 @@
     position: absolute;
     left: 15px;
     top: 13px;
-    color: gray;
-    background: #e3fdff;
+    color: white;
+    background: var(--preto);
     padding: 0 5px;
     transition: 0.2s ease all;
     -moz-transition:0.2s ease all; 
@@ -29,6 +29,7 @@
     font-size: 1.2rem;
     padding-left: 20px;
     box-sizing: border-box;
+    color: white;
 }
 
 .floating-input:focus{
@@ -54,9 +55,9 @@
     color: white;
     font-weight: 700;
     font-size: 1.5rem;
-    box-shadow: 2px 27px 67px -3px rgba(51,176,246,0.61);
-    -webkit-box-shadow: 2px 27px 67px -3px rgba(51,176,246,0.61);
-    -moz-box-shadow: 2px 27px 67px -3px rgba(51,176,246,0.61);
+    box-shadow: 2px 10px 67px -18px rgba(51,176,246,0.61);
+    -webkit-box-shadow: 2px 10px 67px -18px rgba(51,176,246,0.61);
+    -moz-box-shadow: 2px 10px 67px -18px rgba(51,176,246,0.61);
     cursor: pointer;
 }
 

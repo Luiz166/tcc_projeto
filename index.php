@@ -18,7 +18,7 @@ include 'resources/conn.php';
 <body>
     <div class="container">
         <section class="esquerdaLogo">
-            <span>projeto</span>
+            <span>My Finances</span>
         </section>
         <section class="direitaForm">
             <div class="formImg">

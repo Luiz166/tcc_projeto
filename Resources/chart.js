@@ -9,13 +9,28 @@ let myChart = new Chart(ctx, {
     datasets: [{
       label: 'Receita',
       data: [],
-      borderWidth: 1
+      borderWidth: 1,
+      fill: true
     }]
   },
   options: {
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        ticks: {
+          color: '#ccc'
+        },
+        grid: {
+          color: '#323755'
+        }
+      },
+      x: {
+        ticks: {
+          color: '#ccc'
+        },
+        grid: {
+          color: '#323755'
+        }
       }
     }
   }
@@ -57,4 +72,6 @@ btnAno.addEventListener('click', function () {
   btnMes.classList.remove('selected');
   btnAno.classList.add('selected');
 });
+
+console.log(myChart.defaults);
 

@@ -95,7 +95,7 @@ if(isset($_SESSION["user"])){
                     <input type="password" name="confirm-password" class="floating-input" placeholder=" " id="" required>
                     <label class="floating-label">Confirmar senha</label>
                 </div>
-                <input type="submit" class="registerBtn" name="submit-button" value="Cadastrar">
+                <input type="submit" class="registerBtn hover-darker" name="submit-button" value="Cadastrar">
                 <span>Já tem uma conta? <a href="/View/login.php">Entrar</a></span>
             </form>
         </section>

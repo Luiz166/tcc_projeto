@@ -28,6 +28,9 @@ body{
         width: 100% !important;
         padding: 0 !important;
     }
+    .transactions{
+        width: 90vw !important;
+    }
     .balance-card{
         width: 500px !important;
         top: 45px !important;
@@ -90,7 +93,7 @@ body{
     
     .transactions{
         margin-top: 6rem !important;
-        width: 90% !important;
+        width: 80vw !important;
     }
     .add-button{
         bottom: 50px !important;
@@ -182,6 +185,38 @@ header span:last-child{
 
 .income-expanses div span:last-child{
     font-size: 1.5rem;
+}
+
+.transactions-table thead tr th{
+    text-align: start;
+}
+
+.transactions-table tbody tr th, .transactions-item tbody tr td{
+    text-align: start;
+}
+
+.transactions-table{
+    width: 100%;
+}
+
+.transactions-table-nome{
+    width: 20%;
+}
+
+.transactions-table-valor{
+    width: 15%;
+}
+
+.transactions-table-data{
+    width: 10%;
+}
+
+.transactions-table-tipo{
+    width: 10%;
+}
+
+.transactions-table-cat{
+    width: 40%;
 }
 
 .transactions{

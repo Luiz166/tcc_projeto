@@ -29,16 +29,18 @@ include "../resources/balanceRendaDespesa.php";
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Style/home.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="container">
         <header>
-            <span>Bom dia</span>
+            <span>Olá</span>
             <?php echo "<span>" . htmlspecialchars($user_name) . "</span>"; ?>
         </header>
         <div class="balance-card">
@@ -59,7 +61,21 @@ include "../resources/balanceRendaDespesa.php";
         </div>
         <div class="transactions">
             <span>Histórico de Transações</span>
-            <?php include '../resources/showTransactions.php'; ?>
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th class="transactions-table-nome" scope="col">Nome</th>
+                        <th class="transactions-table-valor" scope="col">Valor</th>
+                        <th class="transactions-table-data" scope="col">Data</th>
+                        <th class="transactions-table-tipo" scope="col">Tipo</th>
+                        <th class="transactions-table-cat" scope="col">Categoria</th>
+                        <th class="transactions-table-del" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php include '../resources/showTransactions.php'; ?>
+                </tbody>
+            </table>
         </div>
         <footer class="navigation-bar">
             <div class="navigation-bar-items">
@@ -130,4 +146,5 @@ include "../resources/balanceRendaDespesa.php";
     </section>
     <script src="/Resources/home.js"></script>
 </body>
+
 </html>

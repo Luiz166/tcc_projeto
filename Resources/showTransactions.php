@@ -4,35 +4,38 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->Fetch_assoc()) {
 ?>
-        <div class="transactions-item">
-            <div>
-                <span><?php echo htmlspecialchars($row['nome_transacao']); ?></span>
-                <span><?php echo htmlspecialchars(date("d/m/Y", strtotime($row['data']))); ?></span>
-            </div>
-            <div>
-                <span><?php echo number_format($row['valor'], 2); ?></span>
-                <span>
-                    <?php
-                    if ($row['tipo_transacao'] == 1) {
-                        echo htmlspecialchars("Renda");
-                    } else {
-                        echo htmlspecialchars("Despesa");
-                    }
-                    ?>
-                </span>
-            </div>
-            <div>
-                <span>categoria</span>
-                <span><?php echo htmlspecialchars($row['categoria']); ?></span>
-            </div>
-            <form method="POST" action="../Resources/deleteTransaction.php" class="delete-transaction-container">
-                <input type="hidden" name="transaction_id" value="<?php echo $row['transacao_id'] ?>">
-                <input type="hidden" name="transaction_page_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
-                <button type="submit" id="delete-transaction-btn">
-                    <img src="../Resources/icons/delete-left-solid.svg" alt="delete">
-                </button>
-            </form>
-        </div>
+        <tr>
+            <th scope="row">
+                <?php echo htmlspecialchars($row['nome_transacao']); ?>
+            </th>
+            <td>
+                R$<?php echo number_format($row['valor'], 2); ?>
+            </td>
+            <td>
+                <?php echo htmlspecialchars(date("d/m/Y", strtotime($row['data']))); ?>
+            </td>
+            <td>
+                <?php
+                if ($row['tipo_transacao'] == 1) {
+                    echo htmlspecialchars("Renda");
+                } else {
+                    echo htmlspecialchars("Despesa");
+                }
+                ?>
+            </td>
+            <td>
+                <?php echo htmlspecialchars($row['categoria']); ?>
+            </td>
+            <td>
+                <form method="POST" action="../Resources/deleteTransaction.php" class="delete-transaction-container">
+                    <input type="hidden" name="transaction_id" value="<?php echo $row['transacao_id'] ?>">
+                    <input type="hidden" name="transaction_page_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                    <button type="submit" id="delete-transaction-btn">
+                        <img src="../Resources/icons/delete-left-solid.svg" alt="delete">
+                    </button>
+                </form>
+            </td>
+        </tr>
 <?php
     }
 } else {

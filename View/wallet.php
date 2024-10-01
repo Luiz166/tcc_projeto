@@ -37,7 +37,21 @@ include "../resources/balanceRendaDespesa.php";
                 <label for="search" class="floating-label">Pesquisar transações</label>
             </div>
             <div id="history" class="transactionsHistory">
-                <?php include '../resources/showTransactions.php'; ?>
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th class="transactions-table-nome" scope="col">Nome</th>
+                        <th class="transactions-table-valor" scope="col">Valor</th>
+                        <th class="transactions-table-data" scope="col">Data</th>
+                        <th class="transactions-table-tipo" scope="col">Tipo</th>
+                        <th class="transactions-table-cat" scope="col">Categoria</th>
+                        <th class="transactions-table-del" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php include '../resources/showTransactions.php'; ?>
+                </tbody>
+            </table>
             </div>
         </div>
         <footer class="navigation-bar">

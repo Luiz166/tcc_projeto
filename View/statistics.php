@@ -33,7 +33,21 @@ require_once "../resources/conn.php";
         </div>
         <section class="transactions">
             <span>Transações</span>
-            <?php include '../resources/showTransactions.php'; ?>
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th class="transactions-table-nome" scope="col">Nome</th>
+                        <th class="transactions-table-valor" scope="col">Valor</th>
+                        <th class="transactions-table-data" scope="col">Data</th>
+                        <th class="transactions-table-tipo" scope="col">Tipo</th>
+                        <th class="transactions-table-cat" scope="col">Categoria</th>
+                        <th class="transactions-table-del" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php include '../resources/showTransactions.php'; ?>
+                </tbody>
+            </table>
         </section>
         <footer class="navigation-bar">
             <div class="navigation-bar-items">

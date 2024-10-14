@@ -45,7 +45,7 @@ require_once "../Resources/conn.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <?php include '../resources/showTransactions.php'; ?>
+                    <?php include '../Resources/showTransactions.php'; ?>
                 </tbody>
             </table>
         </section>

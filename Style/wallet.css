@@ -35,3 +35,15 @@ header span{
     gap: 1.5rem;
     width: 100%;
 }
+
+.goals{
+    margin-top: 1rem;
+}
+
+.btn-goals{
+    text-decoration: none;
+    background-color: var(--azul);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 12px;
+}

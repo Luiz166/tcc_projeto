@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
 ?>
 
 <?php
-include "../resources/balanceRendaDespesa.php";
+include "../Resources/balanceRendaDespesa.php";
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +73,7 @@ include "../resources/balanceRendaDespesa.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <?php include '../resources/showTransactions.php'; ?>
+                    <?php include '../Resources/showTransactions.php'; ?>
                 </tbody>
             </table>
         </div>
@@ -98,7 +98,10 @@ include "../resources/balanceRendaDespesa.php";
     <div class="overlay"></div>
     <section class="add-transaction-container">
         <?php
+        $sql_obter_meta = "SELECT id, nome FROM metas";
+        $result_obter_meta = $conn->query($sql_obter_meta);
         if (isset($_POST["add-button"])) {
+            
 
             $transactionType = $_POST["transaction-type"];
             //converting
@@ -107,13 +110,23 @@ include "../resources/balanceRendaDespesa.php";
             $name = $_POST["name"];
             $date = $_POST["date"];
             $categoria = $_POST["categoria"];
+            $meta_id = $_POST['meta_id'];
 
-            $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id) VALUES ( ?, ?, ?, ?, ?, ? )";
+            $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id, meta_id) VALUES ( ?, ?, ?, ?, ?, ?, ? )";
 
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("dssisi", $value, $name, $date, $transactionType, $categoria, $user_id);
+            $stmt->bind_param("dssisii", $value, $name, $date, $transactionType, $categoria, $user_id, $meta_id);
             $stmt->execute();
 
+            if($transactionType === 0){
+                $sql_meta = "UPDATE metas SET gasto_total = gasto_total + ? WHERE id = ?";
+                $stmt_meta = $conn->prepare($sql_meta);
+                $stmt_meta->bind_param("di", $value, $meta_id);
+                $stmt_meta->execute();
+                $stmt_meta->close();
+            }
+            
+            
             header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         }
@@ -140,6 +153,19 @@ include "../resources/balanceRendaDespesa.php";
             <div class="floating-label-group">
                 <input type="date" name="date" id="" placeholder=" " required class="floating-input">
                 <label class="floating-label">Data</label>
+            </div>
+            <div class="floating-label-group">
+                <label for="meta_id">Selecione uma meta (se for despesa):</label>
+                <select name="meta_id">
+                    <option value="">Nenhuma meta</option>
+                    <?php if($result_obter_meta->num_rows > 0): ?>
+                        <?php while($row = $result_obter_meta->fetch_assoc()): ?>
+                            <option value="<?= $row['id'] ?>"><?= htmlspecialchars($row['nome']) ?></option>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <option value="">Você não tem nenhuma meta</option>
+                    <?php endif; ?>
+                </select>
             </div>
             <input type="submit" value="Adicionar" name="add-button" class="registerBtn">
         </form>

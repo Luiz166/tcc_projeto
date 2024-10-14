@@ -5,6 +5,7 @@
 .floating-label-group{
     position: relative;
     margin-bottom: 1rem;
+    color: white;
 }
 
 .floating-label{

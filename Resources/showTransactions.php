@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
                     <input type="hidden" name="transaction_id" value="<?php echo $row['transacao_id'] ?>">
                     <input type="hidden" name="transaction_page_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                     <button type="submit" id="delete-transaction-btn">
-                        <img src="../Resources/icons/delete-left-solid.svg" alt="delete">
+                        <img src="../Resources/Icons/delete-left-solid.svg" alt="delete">
                     </button>
                 </form>
             </td>

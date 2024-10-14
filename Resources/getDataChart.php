@@ -12,7 +12,7 @@ switch ($periodo) {
                 FROM transacoes
                 WHERE YEAR(data) = YEAR(CURDATE())
                 AND usuario_id = $user_id
-                GROUP BY MONTH(data)";
+                GROUP BY label";
         break;
 
     case 'mes':
@@ -32,7 +32,7 @@ switch ($periodo) {
                 FROM transacoes
                 WHERE YEARWEEK(data, 1) = YEARWEEK(CURDATE(), 1)
                 AND usuario_id = $user_id
-                GROUP BY DAY(data) ORDER BY label";
+                GROUP BY label ORDER BY label";
         break;
 }
 

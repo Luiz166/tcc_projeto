@@ -30,6 +30,9 @@ include "../Resources/balanceRendaDespesa.php";
             <span>Saldo Total</span>
             <span>R$<?php echo number_format($saldo_total, 2, ',', '.'); ?></span>
         </section>
+        <div class="goals">
+            <a href="/View/goals.php" class="btn-goals">Fazer planejamentos</a>
+        </div>
         <div class="transactions">
             <span>Transações</span>
             <div class="floating-label-group">
@@ -49,7 +52,7 @@ include "../Resources/balanceRendaDespesa.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <?php include '../resources/showTransactions.php'; ?>
+                    <?php include '../Resources/showTransactions.php'; ?>
                 </tbody>
             </table>
             </div>

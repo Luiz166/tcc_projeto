@@ -5,11 +5,11 @@ if (!isset($_SESSION["user"])) {
     header("Location: login.php");
     exit();
 }
-require_once "../resources/conn.php";
+require_once "../Resources/conn.php";
 ?>
 
 <?php 
-include "../resources/balanceRendaDespesa.php";
+include "../Resources/balanceRendaDespesa.php";
 ?>
 
 <!DOCTYPE html>

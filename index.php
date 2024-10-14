@@ -4,7 +4,7 @@ if(isset($_SESSION["user"])){
     header("Location: ./View/home.php");
     exit();
 }
-require_once "./resources/conn.php";
+require_once "./Resources/conn.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,6 +1,6 @@
 <?php 
-include '../resources/conn.php';
-require '../resources/helper.php';
+include '../Resources/conn.php';
+require '../Resources/helper.php';
 
 ?>
 

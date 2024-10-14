@@ -8,7 +8,7 @@ if (!isset($_SESSION["user"])) {
 ?>
 
 <?php
-require_once "../resources/conn.php";
+require_once "../Resources/conn.php";
 $sql = "SELECT nome FROM usuario WHERE usuario_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);

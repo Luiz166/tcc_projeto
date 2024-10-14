@@ -30,7 +30,7 @@ if(isset($_SESSION["user"])){
                     if(isset($_POST["login"])){
                         $email = $_POST["email"];
                         $password = $_POST["password"];
-                        require_once "../resources/conn.php";
+                        require_once "../Resources/conn.php";
                         $sql = "SELECT * FROM usuario WHERE email = '$email'";
                         $result = mysqli_query($conn, $sql);
                         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);

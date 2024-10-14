@@ -389,4 +389,19 @@ header span:last-child{
     background-color: rgba(255, 0, 0, 0.4);
 }
 
+.floating-label-group select{
+    border: solid 1px var(--azul);
+    background-color: transparent;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 12px;
+    outline: none;
+}
 
+.floating-label-group select:focus{
+    color: var(--azul);
+}
+
+.floating-label-group{
+    justify-content: flex-start;
+}

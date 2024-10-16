@@ -25,12 +25,15 @@ DROP TABLE IF EXISTS `metas`;
 CREATE TABLE `metas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `valor_meta` decimal(10,2) NOT NULL,
-  `gasto_total` decimal(10,2) DEFAULT '0.00',
+  `gasto_total` decimal(10,2) DEFAULT (0.00),
   `rendimento` decimal(10,2) GENERATED ALWAYS AS ((`valor_meta` - `gasto_total`)) STORED,
   `mes` int NOT NULL,
   `nome` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user` (`user_id`),
+  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`usuario_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +42,7 @@ CREATE TABLE `metas` (
 
 LOCK TABLES `metas` WRITE;
 /*!40000 ALTER TABLE `metas` DISABLE KEYS */;
-INSERT INTO `metas` (`id`, `valor_meta`, `gasto_total`, `mes`, `nome`) VALUES (1,1000.00,200.00,11,'meta nov');
+INSERT INTO `metas` (`id`, `valor_meta`, `gasto_total`, `mes`, `nome`, `user_id`) VALUES (3,1200.00,600.00,11,'meta nov',1),(4,600.00,0.00,11,'meta nov 2',1);
 /*!40000 ALTER TABLE `metas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,9 +63,11 @@ CREATE TABLE `transacoes` (
   `usuario_id` int DEFAULT NULL,
   `meta_id` int DEFAULT NULL,
   PRIMARY KEY (`transacao_id`),
-  KEY `fk_usuario_id` (`usuario_id`),
-  KEY `fk_meta` (`meta_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_usuario` (`usuario_id`),
+  KEY `fk_meta` (`meta_id`),
+  CONSTRAINT `fk_meta` FOREIGN KEY (`meta_id`) REFERENCES `metas` (`id`),
+  CONSTRAINT `fk_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +76,7 @@ CREATE TABLE `transacoes` (
 
 LOCK TABLES `transacoes` WRITE;
 /*!40000 ALTER TABLE `transacoes` DISABLE KEYS */;
-INSERT INTO `transacoes` VALUES (15,1000,'salario','2024-08-21',1,NULL,NULL,NULL),(8,100,'celular','2024-08-18',0,NULL,NULL,NULL),(14,200,'teste','2024-08-19',0,NULL,NULL,NULL),(17,100,'carne','2024-09-17',0,'mercado',3,NULL),(18,1200,'salario','2024-10-14',1,'renda',4,0),(19,200,'pedivela','2024-10-14',0,'bike',4,1);
+INSERT INTO `transacoes` VALUES (1,600,'bike','2024-10-16',0,'bike',1,3);
 /*!40000 ALTER TABLE `transacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +93,7 @@ CREATE TABLE `usuario` (
   `email` varchar(255) NOT NULL,
   `senha` varchar(100) NOT NULL,
   PRIMARY KEY (`usuario_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +102,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Mark Smith Jr Jr','marksmith@gmail.com','$2y$10$K3GyrJ33FdZo3pMKREGRb.pQ/nZ9lWYWKqHDhQX52XTTt24UbjWge'),(3,'Mark Smith 2','marksmith2@gmail.com','$2y$10$Ms91P/yzs.dSp1dW5AeBnuVRzKMT31wKs5ynNRCDUc/Zegyedcf6W'),(4,'teste','teste@gmail.com','$2y$10$JBXEhyxScRPmeOJ7I4AQluAZF2f38jlQgWZScIjWeuKQ4JUZ9/CAG');
+INSERT INTO `usuario` VALUES (1,'teste','teste@gmail.com','$2y$10$/y.4uK34QdcU9NdoUAOtVex4TZS2eWu53/wPiGVx90cYdWgHVFreC');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-14 16:00:28
+-- Dump completed on 2024-10-16 18:42:10

@@ -31,7 +31,7 @@ $mes = isset($_GET['mes']) ? intval($_GET['mes']) : null;
                 <div>
                     <?php
                         for($i = 1; $i <= 12; $i++){
-                            echo "<button type='submit' name='mes' value='$i'>".
+                            echo "<button type='submit' name='mes' id='$i' class='time-btn' value='$i'>".
                                 date('F', mktime(0, 0, 0, $i, 1)).
                                 "</button>";
                         }
@@ -43,7 +43,10 @@ $mes = isset($_GET['mes']) ? intval($_GET['mes']) : null;
         <?php
             if ($mes) {
             // Consulta para obter as metas do mês especificado
-            $sql = "SELECT * FROM metas WHERE mes = ?";
+            $sql = "SELECT mes, 
+                    SUM(valor_meta) AS total_meta, 
+                    SUM(rendimento) as total_rendimento 
+                    FROM metas WHERE mes = ? AND user_id = $user_id GROUP BY mes";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $mes);
             $stmt->execute();
@@ -59,11 +62,11 @@ $mes = isset($_GET['mes']) ? intval($_GET['mes']) : null;
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='goalsResult'>";
                     echo "<span>Saldo da meta </span>";
-                    echo "<span> R$" . htmlspecialchars($row['valor_meta']) . "</span>";
+                    echo "<span> R$" . htmlspecialchars($row['total_meta']) . "</span>";
                     echo "</div>";
                     echo "<div class='goalsResult'>";
                     echo "<span>Rendimento total</span>";
-                    echo "<span> R$" . number_format($row['rendimento'], 2, ',', '.') . "</span>";
+                    echo "<span> R$" . number_format($row['total_rendimento'], 2, ',', '.') . "</span>";
                     echo "</div>";          
                 }
                 echo "</div>";
@@ -73,55 +76,10 @@ $mes = isset($_GET['mes']) ? intval($_GET['mes']) : null;
                 echo "<p>Selecione um mês para exibir as metas</p>";
             }
         ?>
-        <div class="goalsDiv">
-            <button type="button" class="showFormBtn">Criar meta</button>
-            <div class="formGoals">
-                <form method="post">
-                    <div class="floating-label-group">
-                        <input type="text" class="floating-input" name="meta_name" placeholder=" " id=""/>
-                        <label class="floating-label">Nome da meta</label>
-                    </div>
-                    <div class="floating-label-group">
-                        <input type="number" required class="floating-input" name="meta_value" placeholder=" "/>
-                        <label class="floating-label">Valor da Meta</label>
-                    </div>
-                    <div class="floating-label-group">
-                        <label for="meta_id">Mês</label>
-                        <select name="meta_id">
-                            <option value="1">Janeiro</option>
-                            <option value="2">Fev</option>
-                            <option value="3">Mar</option>
-                            <option value="4">Abr</option>
-                            <option value="5">Mai</option>
-                            <option value="6">Jun</option>
-                            <option value="7">Jul</option>
-                            <option value="8">Ago</option>
-                            <option value="9">Set</option>
-                            <option value="10">Out</option>
-                            <option value="11">Nov</option>
-                            <option value="12">Dez</option>
-                        </select>
-                    </div>
-                    <button name="add-button" type="submit">Adicionar meta</button>
-                </form>
-                <?php
-                    if(isset($_POST['add-button'])){
-                        $meta_id = $_POST['meta_id'];
-                        $nome = $_POST['meta_name'];
-                        $value = $_POST['meta_value'];
-
-                        $sql_create_meta = "INSERT INTO metas (nome, valor_meta, mes) VALUES (?, ?, ?)";
-                        $stmt_create_meta = $conn->prepare($sql_create_meta);
-                        $stmt_create_meta->bind_param('sdi', $nome, $value, $meta_id);
-                        $stmt_create_meta->execute();
-                        $stmt_create_meta->close();
-                    }
-                ?>
-            </div>
-        </div>
+        
         </div>
         <section class="transactions">
-            <span>Transações</span>
+            <span>Histórico</span>
             <table class="transactions-table">
                 <thead>
                     <tr>
@@ -138,7 +96,8 @@ $mes = isset($_GET['mes']) ? intval($_GET['mes']) : null;
                 </tbody>
             </table>
         </section>
-        <footer class="navigation-bar">
+        <a class="showFormBtn" href="/View/create-goal.php">Nova Meta</a>
+    <footer class="navigation-bar">
         <div class="navigation-bar-items">
             <a href="/View/home.php">
                 <img src="/Resources/Icons/house-solid.svg" alt="">

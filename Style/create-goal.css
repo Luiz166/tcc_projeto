@@ -1,0 +1,25 @@
+.container{
+    justify-content: unset !important;
+}
+
+header a{
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.add-goal-btn{
+    background: linear-gradient(to top, var(--verde-agua), var(--azul));
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.floating-label-group{
+    max-width: 20rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}

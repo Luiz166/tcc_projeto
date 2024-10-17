@@ -60,6 +60,7 @@ require_once "./Resources/conn.php";
                         mysqli_stmt_bind_param($stmt, "sss", $fullName, $email, $passwordHash);
                         mysqli_stmt_execute($stmt);
                         echo "<div class='succesfull message'>Você foi registrado.</div>";
+                        header("Location: ./index.php");
                         exit();
                     }else{
                         die("Ocorreu um erro.");

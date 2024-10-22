@@ -98,7 +98,7 @@ include "../Resources/balanceRendaDespesa.php";
     <div class="overlay"></div>
     <section class="add-transaction-container">
         <?php
-        $sql_obter_meta = "SELECT id, nome FROM metas";
+        $sql_obter_meta = "SELECT id, nome FROM metas WHERE user_id = $user_id";
         $result_obter_meta = $conn->query($sql_obter_meta);
         if (isset($_POST["add-button"])) {
             

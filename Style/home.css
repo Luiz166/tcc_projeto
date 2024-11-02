@@ -405,3 +405,19 @@ header span:last-child{
 .floating-label-group{
     justify-content: flex-start;
 }
+
+#parcela_input{
+    width: 60px;
+    height: 30px;
+    border: solid 1px var(--azul);
+    border-radius: 24px;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding-left: 12px;
+    color: white;
+    outline: none;
+}
+
+#parcela_div{
+    display: none;
+}

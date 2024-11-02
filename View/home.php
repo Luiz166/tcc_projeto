@@ -111,31 +111,58 @@ include "../Resources/balanceRendaDespesa.php";
             $date = $_POST["date"];
             $categoria = $_POST["categoria"];
             $meta_id = $_POST['meta_id'];
+            $num_parcelas = $_POST['parcela_input'];
             
+            //renda
             if($transactionType == 1){
                 $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id) VALUES ( ?, ?, ?, ?, ?, ?)";
-    
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("dssisi", $value, $name, $date, $transactionType, $categoria, $user_id);
                 $stmt->execute();
 
             }
-            else{
-                $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id, meta_id) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
-                if($meta_id <= 0){
-                    $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id) VALUES ( ?, ?, ?, ?, ?, ?)";
+            else{ //despesa
+                if (isset($_POST['parcela_check'])) { // Despesa Parcelada
+                    $valorParcela = $value / $num_parcelas;
+                    
+                    $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id" . ($meta_id > 0 ? ", meta_id" : "") . ") VALUES (?, ?, ?, ?, ?, ?" . ($meta_id > 0 ? ", ?" : "") . ")";
+                    
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("dssisi", $value, $name, $date, $transactionType, $categoria, $user_id);
+                    
+                    for ($i = 0; $i < $num_parcelas; $i++) {
+                        $dataParcela = date("Y-m-d", strtotime("+$i month", strtotime($date)));
+                        if ($meta_id > 0) {
+                            $stmt->bind_param("dssisii", $valorParcela, $name, $dataParcela, $transactionType, $categoria, $user_id, $meta_id);
+                        } else {
+                            $stmt->bind_param("dssisi", $valorParcela, $name, $dataParcela, $transactionType, $categoria, $user_id);
+                        }
+                        $stmt->execute();
+                    }
+                    
+                    $stmt->close();
+                } else { // Despesa normal
+                    $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id" . ($meta_id > 0 ? ", meta_id" : "") . ") VALUES (?, ?, ?, ?, ?, ?" . ($meta_id > 0 ? ", ?" : "") . ")";
+                    
+                    $stmt = $conn->prepare($sql);
+                    
+                    if ($meta_id > 0) {
+                        $stmt->bind_param("dssisii", $value, $name, $date, $transactionType, $categoria, $user_id, $meta_id);
+                    } else {
+                        $stmt->bind_param("dssisi", $value, $name, $date, $transactionType, $categoria, $user_id);
+                    }
+                    
                     $stmt->execute();
+                    $stmt->close();
                 }
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("dssisii", $value, $name, $date, $transactionType, $categoria, $user_id, $meta_id);
-                $stmt->execute();
-                $sql_meta = "UPDATE metas SET gasto_total = gasto_total + ? WHERE id = ?";
-                $stmt_meta = $conn->prepare($sql_meta);
-                $stmt_meta->bind_param("di", $value, $meta_id);
-                $stmt_meta->execute();
-                $stmt_meta->close();
+                
+                // Atualiza o valor da meta se houver uma
+                if ($meta_id > 0) {
+                    $sql_meta = "UPDATE metas SET gasto_total = gasto_total + ? WHERE id = ?";
+                    $stmt_meta = $conn->prepare($sql_meta);
+                    $stmt_meta->bind_param("di", $value, $meta_id);
+                    $stmt_meta->execute();
+                    $stmt_meta->close();
+                }
             }
             
             header("Location: " . $_SERVER['PHP_SELF']);
@@ -177,6 +204,15 @@ include "../Resources/balanceRendaDespesa.php";
                         <option value="">Você não tem nenhuma meta</option>
                     <?php endif; ?>
                 </select>
+            </div>
+            <div class="floating-label-group">
+                <input type="checkbox" name="parcela_check" id="parcela_check" />
+                <label for="parcela_check">Parcelado</label>
+                
+            </div>
+            <div class="floating-label-group" id="parcela_div">
+                <label for="parcela_input">Número de parcelas</label>
+                <input type="number" id="parcela_input" name="parcela_input"/>
             </div>
             <input type="submit" value="Adicionar" name="add-button" class="registerBtn">
         </form>

@@ -1,6 +1,15 @@
 @import url(variables.css);
 @import url(form.css);
 
+@media (max-width: 900px){
+    .options button{
+        padding: 5px !important;
+    }
+    .options a{
+        padding: 2px !important;
+    }
+}
+
 header{
 position: static !important;
 display: flex;

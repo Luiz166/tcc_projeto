@@ -1,32 +1,16 @@
-<?php
-session_start();
-$user_id = $_SESSION['user'];
-if (!isset($_SESSION["user"])) {
-    header("Location: login.php");
-    exit();
-}
-require_once "../Resources/conn.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Style/home.css">
-    <link rel="stylesheet" href="/Style/carteira.css">
     <link rel="stylesheet" href="/Style/statistics.css">
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-    <h1>Consumo Total</h1>
+<div class="container">
+        <h1>Consumo total</h1>
         <main>
-            <div class="time-frame">
-                <button type="button" id="btn-semana">Semana</button>
-                <button type="button" id="btn-mes">Mês</button>
-                <button type="button" id="btn-ano">Ano</button>
-            </div>
             <div>
                 <canvas id="myChart"></canvas>
             </div>
@@ -42,7 +26,7 @@ require_once "../Resources/conn.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <?php include '../Resources/getDespesas.php'; ?>
+                        <?php include '../Resources/showTransactions.php'; ?>
                     </tbody>
                 </table>
             </div>
@@ -77,6 +61,14 @@ require_once "../Resources/conn.php";
             $num_parcelas = $_POST['parcela_input'];
             
             //renda
+            if($transactionType == 1){
+                $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id) VALUES ( ?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("dssisi", $value, $name, $date, $transactionType, $categoria, $user_id);
+                $stmt->execute();
+
+            }
+            else{ //despesa
                 if (isset($_POST['parcela_check'])) { // Despesa Parcelada
                     $valorParcela = $value / $num_parcelas;
                     
@@ -118,13 +110,13 @@ require_once "../Resources/conn.php";
                     $stmt_meta->execute();
                     $stmt_meta->close();
                 }
+            }
             
             header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         }
         ?>
         <form class="registerForm" method="post">
-            <h1>Adicionar despesa</h1>
             <div class="floating-label-group">
                 <input type="number" name="value" id="valueInput" required class="floating-input" placeholder=" ">
                 <label class="floating-label">Valor</label>
@@ -141,32 +133,9 @@ require_once "../Resources/conn.php";
                 <input type="date" name="date" id="" placeholder=" " required class="floating-input">
                 <label class="floating-label">Data</label>
             </div>
-            <div class="floating-label-group">
-                <label for="meta_id">Selecione uma meta:</label>
-                <select name="meta_id">
-                    <option value="0">Nenhuma meta</option>
-                    <?php if($result_obter_meta->num_rows > 0): ?>
-                        <?php while($row = $result_obter_meta->fetch_assoc()): ?>
-                            <option value="<?= $row['id'] ?>"><?= htmlspecialchars($row['nome']) ?></option>
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                        <option value="">Você não tem nenhuma meta</option>
-                    <?php endif; ?>
-                </select>
-            </div>
-            <div class="floating-label-group">
-                <input type="checkbox" name="parcela_check" id="parcela_check" />
-                <label for="parcela_check">Parcelado</label>
-                
-            </div>
-            <div class="floating-label-group" id="parcela_div">
-                <label for="parcela_input">Número de parcelas</label>
-                <input type="number" id="parcela_input" name="parcela_input"/>
-            </div>
+
             <input type="submit" value="Adicionar" name="add-button" class="registerBtn">
         </form>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/Resources/chart.js"></script>
 </body>
 </html>

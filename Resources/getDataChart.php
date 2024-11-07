@@ -7,7 +7,6 @@ $periodo = $_GET['periodo'];
 switch ($periodo) {
     case 'ano':
         $sql = "SELECT MONTHNAME(data) AS label, 
-                       SUM(CASE WHEN tipo_transacao = 1 THEN valor ELSE 0 END) - 
                        SUM(CASE WHEN tipo_transacao = 0 THEN valor ELSE 0 END) AS receita
                 FROM transacoes
                 WHERE YEAR(data) = YEAR(CURDATE())
@@ -17,7 +16,6 @@ switch ($periodo) {
 
     case 'mes':
         $sql = "SELECT WEEK(data, 1) AS label, 
-                       SUM(CASE WHEN tipo_transacao = 1 THEN valor ELSE 0 END) - 
                        SUM(CASE WHEN tipo_transacao = 0 THEN valor ELSE 0 END) AS receita
                 FROM transacoes
                 WHERE MONTH(data) = MONTH(CURDATE()) AND YEAR(data) = YEAR(CURDATE())
@@ -27,7 +25,6 @@ switch ($periodo) {
 
     case 'semana':
         $sql = "SELECT DAYNAME(data) AS label, 
-                       SUM(CASE WHEN tipo_transacao = 1 THEN valor ELSE 0 END) - 
                        SUM(CASE WHEN tipo_transacao = 0 THEN valor ELSE 0 END) AS receita
                 FROM transacoes
                 WHERE YEARWEEK(data, 1) = YEARWEEK(CURDATE(), 1)

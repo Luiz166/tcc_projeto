@@ -74,6 +74,15 @@ require_once "./Resources/conn.php";
                 <input type="password" name="password" placeholder="Senha">
                 <input type="password" name="confirm-password" placeholder="Confirme a senha">
                 <input class="formBtn" name="register" type="submit" value="Criar"/>
+                <div class="socials">
+                    <i class="fa-brands fa-google fa-xl"></i>
+                    <i class="fa-brands fa-linkedin fa-xl"></i>
+                    <i class="fa-brands fa-apple fa-xl"></i>
+                </div>
+                <div class="footer">
+                <span>Você já tem uma conta?</span>
+                <button type="button" id="loginBtn">Entrar</button>
+                </div>
             </form>
         </div>
         <div class="form-container sign-in">
@@ -100,10 +109,19 @@ require_once "./Resources/conn.php";
                     }
                 }
                 ?>
-                <h1>Entrar</h1>
-                <input type="email" name="email" require placeholder="E-mail">
-                <input type="password" name="password" require placeholder="Senha">
+                <h1>Login</h1>
+                <input type="email" id="email" name="email" require placeholder="E-mail">
+                <input type="password" id="password" name="password" require placeholder="Senha">
                 <input class="formBtn" type="submit" name="login" value="Entrar"/>
+                <div class="socials">
+                    <i class="fa-brands fa-google fa-xl"></i>
+                    <i class="fa-brands fa-linkedin fa-xl"></i>
+                    <i class="fa-brands fa-apple fa-xl"></i>
+                </div>
+                <div class="footer">
+                <span>Você não tem uma conta?</span>
+                <button type="button" id="registerBtn">Criar conta</button>
+                </div>
             </form>
         </div>
         <div class="toggle-container">

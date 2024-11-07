@@ -2,6 +2,9 @@ const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
 
+const responsiveLoginBtn = document.getElementById('loginBtn');
+const responsiveRegisterBtn = document.getElementById('registerBtn');
+
 registerBtn.addEventListener('click', () => {
     container.classList.add("active");
 });
@@ -9,6 +12,14 @@ registerBtn.addEventListener('click', () => {
 loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
 });
+
+responsiveRegisterBtn.addEventListener('click', () => {
+    container.classList.add("active");
+})
+
+responsiveLoginBtn.addEventListener('click', () => {
+    container.classList.remove("active");
+})
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')

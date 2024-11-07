@@ -77,12 +77,14 @@ body{
         width: 100% !important;
         justify-content: center !important;
         padding: 0 !important;
+        overflow: hidden;
     }
 
     header{
         width: 100% !important;
         border-radius: 0 0 25px 25px !important;
         padding: 0 !important;
+        padding-left: 2rem !important;
     }
 
     .balance-card{
@@ -103,8 +105,46 @@ body{
     .add-transaction-container{
         width: 50vw !important;
     }
+    .navigation-bar{
+        background-color: var(--azul-escuro) !important;
+        border: none !important;
+    }
 }
 
+.card{
+    color: white;
+}
+
+.card div{
+    background-color: var(--roxo);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    height: 5rem;
+    padding: 12px;
+}
+
+.card div span{
+    font-weight: 700;
+}
+
+.card div a{
+    background: linear-gradient(to top, var(--verde-agua), var(--azul));
+    text-decoration: none;
+    height: fit-content;
+    color: white;
+    border-radius: 14px;
+}
+
+main{
+    scroll-behavior: smooth;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}
+main::-webkit-scrollbar{
+    display: none;
+}
 
 .container{
     max-width: 81.25rem;
@@ -122,6 +162,7 @@ header{
     display: flex;
     flex-direction: column;
     background-color: var(--azul-escuro);
+    justify-content: center;
     color: white;
     width: 100%;
     border-radius: 0 0 50px 50px;
@@ -132,13 +173,8 @@ header{
 }
 
 header span:nth-child(1){
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: 600;
-}
-
-header span:last-child{
-    font-size: 1.5rem;
-    font-weight: 700;
 }
 
 .balance-card{
@@ -200,7 +236,7 @@ header span:last-child{
 }
 
 .transactions-table-nome{
-    width: 20%;
+    width: 50%;
 }
 
 .transactions-table-valor{
@@ -223,7 +259,6 @@ header span:last-child{
     width: 81.25rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 2rem;
     margin-top: 4rem;
     color: white;
@@ -260,22 +295,15 @@ header span:last-child{
 }
 
 .add-button{
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    text-decoration: none;
-    background-color: var(--roxo-claro);
-    border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(to top, var(--verde-agua), var(--azul));
+    border-radius: 12px;
     color: white;
     font-size: 1.5rem;
     font-weight: 700;
+    padding: 6px;
     border: none;
     cursor: pointer;
+    margin-top: 2rem;
 }
 
 .navigation-bar-items{
@@ -301,13 +329,6 @@ header span:last-child{
 }
 
 .add-transaction-container{
-    position: absolute;
-    width: 70rem;
-    display: none;
-    justify-content: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: var(--preto);
     padding: 12px;
     border-radius: 24px;

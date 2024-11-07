@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT * FROM transacoes WHERE usuario_id = $user_id ORDER BY data DESC";
+$sql = "SELECT * FROM transacoes WHERE tipo_transacao = 0 AND usuario_id = $user_id ORDER BY data DESC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->Fetch_assoc()) {
@@ -12,7 +12,6 @@ if ($result->num_rows > 0) {
             <td>
                 R$<?php echo number_format($row['valor'], 2); ?>
             </td>
-
             <td>
                 <form method="POST" action="../Resources/deleteTransaction.php" class="delete-transaction-container">
                     <input type="hidden" name="transaction_id" value="<?php echo $row['transacao_id'] ?>">

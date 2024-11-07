@@ -5,7 +5,26 @@ if (!isset($_SESSION["user"])) {
     header("Location: login.php");
     exit();
 }
+?>
+
+<?php
 require_once "../Resources/conn.php";
+$sql = "SELECT nome FROM usuario WHERE usuario_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $user_name = $row['nome'];
+} else {
+    $user_name = "Convidado";
+}
+?>
+
+<?php
+include "../Resources/balanceRendaDespesa.php";
 ?>
 
 <!DOCTYPE html>
@@ -13,24 +32,29 @@ require_once "../Resources/conn.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Style/home.css">
-    <link rel="stylesheet" href="/Style/carteira.css">
-    <link rel="stylesheet" href="/Style/statistics.css">
     <title>Document</title>
+    <link rel="stylesheet" href="/Style/home.css">
+    <link rel="stylesheet" href="/Style/statistics.css">
+    <link rel="stylesheet" href="/Style/carteira.css">
 </head>
 <body>
     <div class="container">
-    <h1>Consumo Total</h1>
+        <h1>Carteira</h1>
         <main>
-            <div class="time-frame">
-                <button type="button" id="btn-semana">Semana</button>
-                <button type="button" id="btn-mes">Mês</button>
-                <button type="button" id="btn-ano">Ano</button>
-            </div>
             <div>
                 <canvas id="myChart"></canvas>
             </div>
-
+            <div class="carteira">
+                <span>Saldo total: R$<?php echo htmlspecialchars($saldo_total) ?></span>
+                <div>
+                    <span>
+                        Despesas: R$<?php echo htmlspecialchars($total_despesa) ?>
+                    </span>
+                    <span>
+                        Renda: R$<?php echo htmlspecialchars($total_renda) ?>
+                    </span>
+                </div>
+            </div>
             <div class="transactions">
                 <h2>Histórico</h2>
                     <table class="transactions-table">
@@ -42,11 +66,11 @@ require_once "../Resources/conn.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <?php include '../Resources/getDespesas.php'; ?>
+                        <?php include '../Resources/showTransactions.php'; ?>
                     </tbody>
                 </table>
             </div>
-            <button type="button" class="add-button">Criar novo gasto</button>
+            <button type="button" class="add-button">Criar nova transação</button>
         </main>
         <footer class="navigation-bar">
             <div class="navigation-bar-items">
@@ -66,7 +90,6 @@ require_once "../Resources/conn.php";
         if (isset($_POST["add-button"])) {
             
 
-            $transactionType = 0;
             //converting
             $transactionType = ($transactionType === 'Renda') ? 1 : 0;
             $value = $_POST["value"];
@@ -77,6 +100,14 @@ require_once "../Resources/conn.php";
             $num_parcelas = $_POST['parcela_input'];
             
             //renda
+            if($transactionType == 1){
+                $sql = "INSERT INTO transacoes (valor, nome_transacao, data, tipo_transacao, categoria, usuario_id) VALUES ( ?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("dssisi", $value, $name, $date, $transactionType, $categoria, $user_id);
+                $stmt->execute();
+
+            }
+            else{ //despesa
                 if (isset($_POST['parcela_check'])) { // Despesa Parcelada
                     $valorParcela = $value / $num_parcelas;
                     
@@ -118,13 +149,19 @@ require_once "../Resources/conn.php";
                     $stmt_meta->execute();
                     $stmt_meta->close();
                 }
+            }
             
             header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         }
         ?>
         <form class="registerForm" method="post">
-            <h1>Adicionar despesa</h1>
+            <div class="switch-container">
+                <input type="radio" name="transaction-type" id="income" value="Renda">
+                <label for="income">Renda</label>
+                <input type="radio" name="transaction-type" id="expense" value="Despesa">
+                <label for="expense">Despesa</label>
+            </div>
             <div class="floating-label-group">
                 <input type="number" name="value" id="valueInput" required class="floating-input" placeholder=" ">
                 <label class="floating-label">Valor</label>
@@ -142,7 +179,7 @@ require_once "../Resources/conn.php";
                 <label class="floating-label">Data</label>
             </div>
             <div class="floating-label-group">
-                <label for="meta_id">Selecione uma meta:</label>
+                <label for="meta_id">Selecione uma meta (se for despesa):</label>
                 <select name="meta_id">
                     <option value="0">Nenhuma meta</option>
                     <?php if($result_obter_meta->num_rows > 0): ?>
@@ -166,7 +203,7 @@ require_once "../Resources/conn.php";
             <input type="submit" value="Adicionar" name="add-button" class="registerBtn">
         </form>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/Resources/chart.js"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../Resources/gastos.js"></script>
 </html>

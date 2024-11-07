@@ -75,3 +75,33 @@ btnAno.addEventListener('click', function () {
 
 console.log(myChart.defaults);
 
+addTransactionBtn = document.querySelector('.add-button');
+
+const container = document.querySelector('.container');
+const transactionContainer = document.querySelector('.add-transaction-container');
+
+addTransactionBtn.addEventListener('click', () => {
+    container.classList.add("fade-out");
+    transactionContainer.classList.remove("hidden")
+    transactionContainer.classList.add("fade-in")
+
+    setTimeout(() => {
+        container.classList.add("hidden");
+        container.classList.remove("fade-out");
+        transactionContainer.classList.remove("fade-in");
+    }, 500)
+})
+
+
+parcelaCheck = document.querySelector('#parcela_check')
+parcelaInputDiv = document.querySelector('#parcela_div')
+
+parcelaCheck.addEventListener("change", (e) => {
+    if(e.currentTarget.checked){
+        parcelaInputDiv.style.display = "block"
+    }
+    else{
+        parcelaInputDiv.style.display = "none"
+    }
+})
+

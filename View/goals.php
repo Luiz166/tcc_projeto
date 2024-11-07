@@ -81,38 +81,29 @@ $mes = isset($_GET['mes']) ? intval($_GET['mes']) : null;
         <section class="transactions">
             <span>Histórico</span>
             <table class="transactions-table">
-                <thead>
-                    <tr>
-                        <th class="transactions-table-nome" scope="col">Nome</th>
-                        <th class="transactions-table-valor" scope="col">Valor</th>
-                        <th class="transactions-table-data" scope="col">Data</th>
-                        <th class="transactions-table-tipo" scope="col">Tipo</th>
-                        <th class="transactions-table-cat" scope="col">Categoria</th>
-                        <th class="transactions-table-del" scope="col"></th>
-                    </tr>
-                </thead>
+                    <thead>
+                        <tr>
+                            <th class="transactions-table-nome" scope="col"></th>
+                            <th class="transactions-table-cat" scope="col"></th>
+                            <th class="transactions-table-del" scope="col"></th>
+                        </tr>
+                    </thead>
                 <tbody>
                     <?php include '../Resources/showTransactions.php'; ?>
                 </tbody>
             </table>
         </section>
         <a class="showFormBtn" href="/View/create-goal.php">Nova Meta</a>
-    <footer class="navigation-bar">
-        <div class="navigation-bar-items">
-            <a href="/View/home.php">
-                <img src="/Resources/Icons/house-solid.svg" alt="">
-            </a>
-            <a href="/View/statistics.php">
-                <img src="/Resources/Icons/chart-simple-solid.svg" alt="">
-            </a>
-            <a href="/View/wallet.php">
-                <img src="/Resources/Icons/wallet-solid.svg" alt="">
-            </a>
-            <a href="/View/profile.php">
-                <img src="/Resources/Icons/user-solid.svg" alt="">
-            </a>
-        </div>
-    </footer>
+        <footer class="navigation-bar">
+            <div class="navigation-bar-items">
+                <a href="/View/home.php">
+                    <img src="/Resources/Icons/house-solid.svg" alt="">
+                </a>
+                <a href="/View/profile.php">
+                    <img src="/Resources/Icons/user-solid.svg" alt="">
+                </a>
+            </div>
+        </footer>
     </div>
     <script>
         const showFormBtn = document.querySelector('.showFormBtn');

@@ -91,6 +91,7 @@ include "../Resources/balanceRendaDespesa.php";
             
 
             //converting
+            $transactionType = $_POST["transaction-type"];
             $transactionType = ($transactionType === 'Renda') ? 1 : 0;
             $value = $_POST["value"];
             $name = $_POST["name"];

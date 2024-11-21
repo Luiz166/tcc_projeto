@@ -55,20 +55,27 @@ include "../Resources/balanceRendaDespesa.php";
                     </span>
                 </div>
             </div>
+            
             <div class="transactions">
                 <h2>Histórico</h2>
-                    <table class="transactions-table">
-                    <thead>
-                        <tr>
-                            <th class="transactions-table-nome" scope="col"></th>
-                            <th class="transactions-table-cat" scope="col"></th>
-                            <th class="transactions-table-del" scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php include '../Resources/showTransactions.php'; ?>
-                    </tbody>
-                </table>
+                <div class="floating-label-group">
+                <input type="text" id="search" placeholder=" " class="floating-input">
+                <label for="search" class="floating-label">Pesquisar transações</label>
+            </div>
+            <div id="history">
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th class="transactions-table-nome" scope="col"></th>
+                        <th class="transactions-table-cat" scope="col"></th>
+                        <th class="transactions-table-del" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php include '../Resources/showTransactions.php'; ?>
+                </tbody>
+            </table>
+        </div>
             </div>
             <button type="button" class="add-button">Criar nova transação</button>
         </main>
@@ -207,4 +214,6 @@ include "../Resources/balanceRendaDespesa.php";
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../Resources/gastos.js"></script>
+<script src="../Resources/SearchBar.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>

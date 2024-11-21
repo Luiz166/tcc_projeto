@@ -61,3 +61,8 @@ main{
     opacity: 1;
     transform: translateX(0);
 }
+
+#history{
+    display: flex;
+    justify-content: space-between;
+}
